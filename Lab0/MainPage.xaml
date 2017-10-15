@@ -8,18 +8,20 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Background="DarkGray"></StackPanel>
         <StackPanel Margin="20">
 
 
-            <TextBlock Text="Lab0" Style="{ThemeResource HeaderTextBlockStyle}"/>
-            <TextBlock Text="Current Weather"/>
-            <TextBlock FontSize="40" Text="CITY" x:Name="city_lbl" Height="81"/>
-            <Image x:Name="imgWeather" Height="100" Source="Assets/WeatherIcons/clear.png" HorizontalAlignment="Left"/>
-            <TextBlock FontSize="40" Text="Result" x:Name="result_lbl"/>
+            <TextBlock Text="Lab0" Style="{ThemeResource HeaderTextBlockStyle}" Foreground="White"/>
+            <TextBlock Text="Current Weather" Foreground="White"/>
+            <TextBlock FontSize="40" Text="CITY" x:Name="city_lbl" Height="81" Foreground="White"/>
+            <Image x:Name="imgWeather" Height="100" Source="Assets/WeatherIcons/clear.png" HorizontalAlignment="Left" />
+            <TextBlock FontSize="40" Text="Condition" x:Name="condition_lbl" Foreground="White"/>
+            <TextBlock FontSize="40" Text="Result" x:Name="result_lbl" Foreground="White"/>
 
-            <Button x:Name="btn_voronezh" Content="Voronezh" Click="btn_voronezh_Click"/>
-            <Button x:Name="btn_defaultCity" Content="Moscow" Click="btn_defaultCity_Click"/>
-            <Button x:Name="btn_sochi" Content="Sochi" Click="btn_sochi_Click"/>
+            <Button x:Name="btn_voronezh" Content="Voronezh" Click="btn_voronezh_Click" Background="DarkBlue" Foreground="White"/>
+            <Button x:Name="btn_defaultCity" Content="Moscow" Click="btn_defaultCity_Click" Background="DarkBlue" Foreground="White"/>
+            <Button x:Name="btn_sochi" Content="Sochi" Click="btn_sochi_Click"  Background="DarkBlue" Foreground="White"/>
         </StackPanel>
     </Grid>
 </Page>

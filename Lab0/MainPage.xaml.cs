@@ -57,21 +57,27 @@ namespace Lab0
             {
                 case "Drizzle":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/drizzle.png"));
+                    condition_lbl.Text = "Drizzle";
                     break;
                 case "Thunderstorm":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/thunderstorm.png"));
+                    condition_lbl.Text = "Thunderstorm";
                     break;
                 case "Rain":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/rain.png"));
+                    condition_lbl.Text = "Rain";
                     break;
                 case "Snow":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/snow.png"));
+                    condition_lbl.Text = "Snow";
                     break;
                 case "Clear":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/clear.png"));
+                    condition_lbl.Text = "Clear";
                     break;
                 case "Clouds":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/clouds.png"));
+                    condition_lbl.Text = "Clouds";
                     break;
                 default:
                     break;
