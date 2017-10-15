@@ -10,6 +10,8 @@ namespace Lab0.Model
 
     public class Rootobject
     {
+
+
         public Coord coord { get; set; }
 
         public List <Weather> weather { get; set; }

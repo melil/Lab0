@@ -108,6 +108,12 @@
     <None Include="Lab0_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\WeatherIcons\clear.png" />
+    <Content Include="Assets\WeatherIcons\clouds.png" />
+    <Content Include="Assets\WeatherIcons\drizzle.png" />
+    <Content Include="Assets\WeatherIcons\rain.png" />
+    <Content Include="Assets\WeatherIcons\snow.png" />
+    <Content Include="Assets\WeatherIcons\thunderstorm.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -135,6 +141,7 @@
       <Version>10.0.3</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
