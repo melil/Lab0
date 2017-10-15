@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="Lab0.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Lab0"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Margin="20" HorizontalAlignment="Center">
+            
+            
+            <TextBlock Text="Weather example" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Current Weather"/>
+            <TextBlock FontSize="40" x:Name="city_lbl"/>
+            <TextBlock FontSize="40" x:Name="result_lbl"/>
+            <Image Height="100"/>
+            <Button x:Name="btn" Content="xx" Click="btn_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
