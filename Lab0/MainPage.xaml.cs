@@ -18,21 +18,17 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace Lab0
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class MainPage : Page
     {
         public MainPage()
         {
             this.InitializeComponent();
             getData();
-        }
 
+        }
         string city = "Moscow,ru";
         string link = "http://api.openweathermap.org/data/2.5/";
         string appid = "&appid=74fbdf01e3477954c50a164249be6f4f";
@@ -42,7 +38,7 @@ namespace Lab0
 
         public async void getData()
         {
-           
+
             string weatherUrl = link + urlWeatherUrl +  city + appid;
             string forecastUrl = link + urlForecastUrl + city + appid;
             HttpClient client = new HttpClient();
@@ -74,12 +70,20 @@ namespace Lab0
             string tempe = weatherData.main.temp.ToString();
             double t0c = Convert.ToDouble(tempe);
             t0c = Math.Round((t0c - kalvin), 1);
+            if (t0c > 0)
+            {
+                result_lbl.Text =" +" + t0c + "°C";
+            } else if (t0c < 0)
+            {
+                result_lbl.Text = t0c + "°C";
+            }
 
 
 
             city_lbl.Text = weatherData.name.ToString();
-            result_lbl.Text = t0c + "°C";
-
+            windSpeed_lbl.Text =" " + weatherData.wind.speed.ToString() + " м/с, С";
+            pressure_lbl.Text =" " +  weatherData.main.pressure.ToString() + " мм рт.ст.";
+            humidity_lbl.Text = " " + weatherData.main.humidity.ToString() + " %";
             //image
             object weather = weatherData.weather[0].main.ToString();
             string weath = Convert.ToString(weather);
@@ -88,27 +92,27 @@ namespace Lab0
             {
                 case "Drizzle":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/drizzle.png"));
-                    condition_lbl.Text = "Drizzle";
+                    condition_lbl.Text = "Мелкий дождь";
                     break;
                 case "Thunderstorm":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/thunderstorm.png"));
-                    condition_lbl.Text = "Thunderstorm";
+                    condition_lbl.Text = "Гроза";
                     break;
                 case "Rain":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/rain.png"));
-                    condition_lbl.Text = "Rain";
+                    condition_lbl.Text = "Дождь";
                     break;
                 case "Snow":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/snow.png"));
-                    condition_lbl.Text = "Snow";
+                    condition_lbl.Text = "Снег";
                     break;
                 case "Clear":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/clear.png"));
-                    condition_lbl.Text = "Clear";
+                    condition_lbl.Text = "Ясно";
                     break;
                 case "Clouds":
                     imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/clouds.png"));
-                    condition_lbl.Text = "Clouds";
+                    condition_lbl.Text = "Облачно";
                     break;
                 default:
                     break;
@@ -134,6 +138,7 @@ namespace Lab0
             city = "Moscow";
             getData();
         }
+        
 
     }
 }

@@ -36,7 +36,19 @@ namespace Lab0.Model
     public class Main
     {
         public float temp { get; set; }
-        public int pressure { get; set; }
+        private double _pressure;
+        public double pressure
+        {
+            get
+            {
+                return _pressure;
+            }
+            set
+            {
+                _pressure = value * 0.750063755419211;
+                _pressure = Math.Round(_pressure, 0);
+            }
+        }
         public int humidity { get; set; }
         public float temp_min { get; set; }
         public float temp_max { get; set; }
