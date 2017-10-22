@@ -29,7 +29,7 @@ namespace Lab0
             getData();
 
         }
-        string city = "Moscow,ru";
+        string city = "Moscow";
         string link = "http://api.openweathermap.org/data/2.5/";
         string appid = "&appid=74fbdf01e3477954c50a164249be6f4f";
         double kalvin = 273.5;
@@ -39,106 +39,112 @@ namespace Lab0
         public async void getData()
         {
 
-            string weatherUrl = link + urlWeatherUrl +  city + appid;
+            string weatherUrl = link + urlWeatherUrl + city + appid;
             string forecastUrl = link + urlForecastUrl + city + appid;
             HttpClient client = new HttpClient();
-            
-            string response = await client.GetStringAsync(weatherUrl);
-            string forecastResponse = await client.GetStringAsync(forecastUrl);
 
+            HttpResponseMessage isaa = await client.GetAsync(weatherUrl);
 
-            var weatherData = JsonConvert.DeserializeObject<Rootobject>(response);
-            var forecastData = JsonConvert.DeserializeObject<forecastMainData>(forecastResponse);
-
-            var forecastListFucker = JsonConvert.DeserializeObject<forecastMainData>(forecastResponse);
-
-            
-            object forecastTest = forecastData.list.Count.ToString();
-            string forecastTexts = Convert.ToString(forecastTest);
-
-            double sredTemp = 0;
-            for (int i = 0; i < forecastData.list.Count; i++) //cчитаем среднюю погоду
+            string content = await isaa.Content.ReadAsStringAsync();
+            var statusCode = isaa.StatusCode;
+            string statusCodeString = Convert.ToString(statusCode);
+            if (statusCodeString == "OK")
             {
-                sredTemp = forecastData.list[i].main.temp + sredTemp;
+                string response = await client.GetStringAsync(weatherUrl);
+                string forecastResponse = await client.GetStringAsync(forecastUrl);
+
+
+
+
+
+
+                var weatherData = JsonConvert.DeserializeObject<Rootobject>(response);
+                var forecastData = JsonConvert.DeserializeObject<forecastMainData>(forecastResponse);
+
+                var forecastListFucker = JsonConvert.DeserializeObject<forecastMainData>(forecastResponse);
+
+                object forecastTest = forecastData.list.Count.ToString();
+                string forecastTexts = Convert.ToString(forecastTest);
+
+                double sredTemp = 0;
+                for (int i = 0; i < forecastData.list.Count; i++) //cчитаем среднюю погоду
+                {
+                    sredTemp = forecastData.list[i].main.temp + sredTemp;
+                }
+                sredTemp = sredTemp / forecastData.list.Count;
+
+
+
+                sredTmp_lbl.Text = Convert.ToString(Math.Round(sredTemp, 1) + "°C");
+
+                string tempe = weatherData.main.temp.ToString();
+                double t0c = Convert.ToDouble(tempe);
+                t0c = Math.Round((t0c - kalvin), 1);
+                if (t0c > 0)
+                {
+                    result_lbl.Text = " +" + t0c + "°C";
+                }
+                else if (t0c < 0)
+                {
+                    result_lbl.Text = t0c + "°C";
+                }
+
+
+
+                city_lbl.Text = weatherData.name.ToString();
+                windSpeed_lbl.Text = " " + weatherData.wind.speed.ToString() + " m/s";
+                pressure_lbl.Text = " " + weatherData.main.pressure.ToString() + "mmHg";
+                humidity_lbl.Text = " " + weatherData.main.humidity.ToString() + " %";
+                //image
+                object weather = weatherData.weather[0].main.ToString();
+                string weath = Convert.ToString(weather);
+
+                switch (weath)
+                {
+                    case "Drizzle":
+                        imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/drizzle.png"));
+                        condition_lbl.Text = "Drizzle";
+                        break;
+                    case "Thunderstorm":
+                        imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/thunderstorm.png"));
+                        condition_lbl.Text = "Thunderstorm";
+                        break;
+                    case "Rain":
+                        imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/rain.png"));
+                        condition_lbl.Text = "Rain";
+                        break;
+                    case "Snow":
+                        imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/snow.png"));
+                        condition_lbl.Text = "Snow";
+                        break;
+                    case "Clear":
+                        imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/clear.png"));
+                        condition_lbl.Text = "Clear";
+                        break;
+                    case "Clouds":
+                        imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/clouds.png"));
+                        condition_lbl.Text = "Clouds";
+                        break;
+                    default:
+                        break;
+
+                }
             }
-            sredTemp = sredTemp / forecastData.list.Count;
-
-
-
-            sredTmp_lbl.Text = Convert.ToString(Math.Round(sredTemp,1) + "°C");
-
-            string tempe = weatherData.main.temp.ToString();
-            double t0c = Convert.ToDouble(tempe);
-            t0c = Math.Round((t0c - kalvin), 1);
-            if (t0c > 0)
+            else if (statusCodeString == "NotFound")
             {
-                result_lbl.Text =" +" + t0c + "°C";
-            } else if (t0c < 0)
-            {
-                result_lbl.Text = t0c + "°C";
+                labName_lbl.Text = "NotFound";
             }
 
 
-
-            city_lbl.Text = weatherData.name.ToString();
-            windSpeed_lbl.Text =" " + weatherData.wind.speed.ToString() + " м/с, С";
-            pressure_lbl.Text =" " +  weatherData.main.pressure.ToString() + " мм рт.ст.";
-            humidity_lbl.Text = " " + weatherData.main.humidity.ToString() + " %";
-            //image
-            object weather = weatherData.weather[0].main.ToString();
-            string weath = Convert.ToString(weather);
-
-            switch (weath)
-            {
-                case "Drizzle":
-                    imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/drizzle.png"));
-                    condition_lbl.Text = "Мелкий дождь";
-                    break;
-                case "Thunderstorm":
-                    imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/thunderstorm.png"));
-                    condition_lbl.Text = "Гроза";
-                    break;
-                case "Rain":
-                    imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/rain.png"));
-                    condition_lbl.Text = "Дождь";
-                    break;
-                case "Snow":
-                    imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/snow.png"));
-                    condition_lbl.Text = "Снег";
-                    break;
-                case "Clear":
-                    imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/clear.png"));
-                    condition_lbl.Text = "Ясно";
-                    break;
-                case "Clouds":
-                    imgWeather.Source = new BitmapImage(new Uri("ms-appx:/Assets/WeatherIcons/clouds.png"));
-                    condition_lbl.Text = "Облачно";
-                    break;
-                default:
-                    break;
-
-            }
 
 
         }
 
-        private void btn_voronezh_Click(object sender, RoutedEventArgs e)
+        private void btn_readTown_Click(object sender, RoutedEventArgs e)
         {
-            city = "Voronezh";
+            city = PushedText_txb.Text.ToString();
             getData();
         }
-        private void btn_sochi_Click(object sender, RoutedEventArgs e)
-        {
-            city = "Sochi";
-            getData();
-
-        }
-        private void btn_defaultCity_Click(object sender, RoutedEventArgs e)
-        {
-            city = "Moscow";
-            getData();
-        }
-        
 
     }
 }

@@ -12,38 +12,35 @@
         <StackPanel Margin="20">
 
 
-            <TextBlock Text="Lab0" Style="{ThemeResource HeaderTextBlockStyle}"/>
-            <TextBlock Text="Current Weather" Foreground="White"/>
+            <TextBlock Text="Lab0" Style="{ThemeResource HeaderTextBlockStyle}" x:Name="labName_lbl"/>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBox x:Name="PushedText_txb" MaxLength="30" Width="220"></TextBox>
+                <Button x:Name="btn_readTown" Click="btn_readTown_Click" Content="Искать" Margin="0 0 20 0"></Button>
+            </StackPanel>
+            <TextBlock FontSize="20" Text="Now in:"/>
             <TextBlock FontSize="40" Text="CITY" x:Name="city_lbl"/>
             <StackPanel Orientation="Horizontal" Height="100" VerticalAlignment="Center">
                 <Image x:Name="imgWeather" Height="70" Source="Assets/WeatherIcons/clear.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBlock FontSize="50" Text="Result" x:Name="result_lbl" VerticalAlignment="Center"/>
             </StackPanel>
-            
 
-            <TextBlock FontSize="20" Text="Сейчас на улице:"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="40" Text="Condition" x:Name="condition_lbl" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="20" Text="Ветер:"></TextBlock>
-                <TextBlock FontSize="20" Text=" Cкорость" x:Name="windSpeed_lbl"></TextBlock>
+                <TextBlock FontSize="20" Text="Wind:"></TextBlock>
+                <TextBlock FontSize="20" Text=" Speed" x:Name="windSpeed_lbl"></TextBlock>
                 <TextBlock FontSize="20" Text=" |"></TextBlock>
-                <TextBlock FontSize="20" Text=" Давление: "></TextBlock>
-                <TextBlock FontSize="20" Text=" Давление" x:Name="pressure_lbl"></TextBlock>
+                <TextBlock FontSize="20" Text=" Pressure: "></TextBlock>
+                <TextBlock FontSize="20" Text=" Pressure" x:Name="pressure_lbl"></TextBlock>
                 <TextBlock FontSize="20" Text=" |"></TextBlock>
-                <TextBlock FontSize="20" Text=" Влажность: "></TextBlock>
-                <TextBlock FontSize="20" Text=" Влажность" x:Name="humidity_lbl"></TextBlock>
+                <TextBlock FontSize="20" Text=" Humidity: "></TextBlock>
+                <TextBlock FontSize="20" Text=" Humidity" x:Name="humidity_lbl"></TextBlock>
             </StackPanel>
             <StackPanel Height="3" Background="Black" Margin="0 10 0 10"></StackPanel>
-            <TextBlock FontSize="20" Text="Средняя температура за неделю:"/>
+            <TextBlock FontSize="20" Text="5 days forecast:"/>
             <TextBlock FontSize="40" Text="Average" Margin="0 10 " x:Name="sredTmp_lbl"/>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="btn_defaultCity" Content="Moscow" Click="btn_defaultCity_Click"/>
-                <Button x:Name="btn_voronezh" Content="Voronezh" Click="btn_voronezh_Click"/>
-                <Button x:Name="btn_sochi" Content="Sochi" Click="btn_sochi_Click"/>
-            </StackPanel>
-   
+           
         </StackPanel>
     </Grid>
 </Page>
