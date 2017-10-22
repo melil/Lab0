@@ -14,10 +14,10 @@
 
             <TextBlock Text="Lab0" Style="{ThemeResource HeaderTextBlockStyle}"/>
             <TextBlock Text="Current Weather" Foreground="White"/>
-            <TextBlock FontSize="40" Text="CITY" x:Name="city_lbl" Height="81"/>
+            <TextBlock FontSize="40" Text="CITY" x:Name="city_lbl"/>
             <StackPanel Orientation="Horizontal" Height="100" VerticalAlignment="Center">
-                <Image x:Name="imgWeather" Height="70" Source="Assets/WeatherIcons/clear.png" HorizontalAlignment="Left" />
-                <TextBlock FontSize="60" Text="Result" x:Name="result_lbl"/>
+                <Image x:Name="imgWeather" Height="70" Source="Assets/WeatherIcons/clear.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock FontSize="50" Text="Result" x:Name="result_lbl" VerticalAlignment="Center"/>
             </StackPanel>
             
 

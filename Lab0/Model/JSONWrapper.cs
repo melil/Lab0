@@ -20,7 +20,18 @@ namespace Lab0.Model
         public int visibility { get; set; }
         public Wind wind { get; set; }
         public Clouds clouds { get; set; }
-        public int dt { get; set; }
+        private int _dt;
+        public int dt
+        {
+            get
+            {
+                return _dt;
+            }
+            set
+            {
+                
+            }
+        }
         public Sys sys { get; set; }
         public int id { get; set; }
         public string name { get; set; }
